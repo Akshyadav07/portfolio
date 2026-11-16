@@ -134,7 +134,7 @@
             </svg>
             View Portfolio
         </a>
-        <form method="POST" action="{{ route('auth.google.logout') }}">
+        <form method="POST" action="{{ route('admin.logout') }}">
             @csrf
             <button type="submit" class="sidebar-footer-link logout-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

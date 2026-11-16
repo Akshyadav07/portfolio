@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProjectController as FrontendProjectController;
 use App\Http\Controllers\Frontend\ContactController;
@@ -28,23 +28,13 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 /*
 |--------------------------------------------------------------------------
-| Google OAuth Routes
+| Admin Authentication Routes
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('auth')->name('auth.google.')->group(function () {
-    Route::get('/google',          [GoogleController::class, 'redirect'])->name('redirect');
-    Route::get('/google/callback', [GoogleController::class, 'callback'])->name('callback');
-    Route::post('/logout',         [GoogleController::class, 'logout'])->name('logout');
-});
-
-// Admin login page (public)
-Route::get('/admin/login', function () {
-    if (session('admin_logged_in')) {
-        return redirect()->route('admin.dashboard');
-    }
-    return view('auth.login');
-})->name('admin.login');
+Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 /*
 |--------------------------------------------------------------------------

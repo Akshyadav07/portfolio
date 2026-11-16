@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Project;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class PortfolioFeatureTest extends TestCase
@@ -58,7 +60,15 @@ class PortfolioFeatureTest extends TestCase
 
     public function test_authenticated_admin_can_access_dashboard()
     {
-        $response = $this->withSession(['admin_logged_in' => true, 'admin_name' => 'Root Admin'])
+        $adminEmail = config('auth.admin_email') ?? env('ADMIN_EMAIL') ?? 'admin@example.com';
+
+        $admin = User::create([
+            'name'     => 'Root Admin',
+            'email'    => $adminEmail,
+            'password' => Hash::make('password'),
+        ]);
+
+        $response = $this->actingAs($admin)
             ->get('/admin/dashboard');
 
         $response->assertStatus(200);

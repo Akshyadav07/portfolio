@@ -102,5 +102,8 @@ class DatabaseSeeder extends Seeder
         foreach ($settings as $key => $value) {
             Setting::set($key, $value);
         }
+
+        // ---- Default Admin User ----
+        $this->call(AdminUserSeeder::class);
     }
 }

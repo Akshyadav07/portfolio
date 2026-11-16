@@ -114,4 +114,18 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Authorized Admin Email
+    |--------------------------------------------------------------------------
+    |
+    | The email address of the sole authorized administrator. Access to the
+    | admin panel is restricted to this email address (case-insensitive).
+    |
+    */
+
+    'admin_email' => env('ADMIN_EMAIL'),
+    'admin_name' => env('ADMIN_NAME'),
+    'admin_password' => env('ADMIN_PASSWORD'),
+
 ];
