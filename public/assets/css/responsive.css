@@ -1,0 +1,168 @@
+/* ============================================================
+   responsive.css — Breakpoint overrides (loaded last)
+   ============================================================ */
+
+/* ── Large screens (≤ 1200px) ────────────────────────────────── */
+@media (max-width: 1200px) {
+  .container {
+    width: 92%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* ── Tablet (≤ 1024px) ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .nav-menu {
+    gap: 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand p {
+    max-width: 480px;
+  }
+}
+
+/* ── Small tablet / large phone (≤ 768px) ────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  /* Navigation */
+  .nav-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Buttons */
+  .btn-primary,
+  .btn-outline {
+    padding: 0.65rem 1.4rem;
+    font-size: 0.875rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 50px 0 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  /* Glass card spacing */
+  .glass-card {
+    border-radius: 12px;
+  }
+}
+
+/* ── Mobile (≤ 480px) ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .container {
+    width: 94%;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+  }
+
+  /* Buttons go full width on very small screens */
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+  .footer-social {
+    gap: 0.5rem;
+  }
+
+  /* Cursor hidden on touch devices (redundant safety) */
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+  /* Tags wrap nicely */
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* ── Very small screens (≤ 360px) ───────────────────────────── */
+@media (max-width: 360px) {
+  .container {
+    width: 96%;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .navbar {
+    height: 60px;
+  }
+
+  body {
+    padding-top: 60px;
+  }
+}
