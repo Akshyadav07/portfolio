@@ -26,6 +26,11 @@ class GoogleController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
         } catch (\Exception $e) {
+
+            \Illuminate\Support\Facades\Log::error(
+                'Google OAuth callback failed: ' . $e->getMessage()
+            );
+            
             return redirect()->route('admin.login')
                 ->with('error', 'Google authentication failed. Please try again.');
         }
