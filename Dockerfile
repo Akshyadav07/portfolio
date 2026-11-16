@@ -39,4 +39,4 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
 
 EXPOSE 10000
 
-CMD ["bash", "-lc", "php artisan migrate --force && apache2-foreground"]
+CMD ["bash", "-lc", "php artisan optimize:clear && php artisan migrate --force && apache2-foreground"]
