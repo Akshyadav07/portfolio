@@ -23,6 +23,17 @@ class GoogleController extends Controller
      */
     public function callback(Request $request)
     {
+        $sessionState = $request->session()->get('state');
+        $callbackState = $request->query('state');
+
+        \Illuminate\Support\Facades\Log::info('Google OAuth state check', [
+            'session_has_state' => !empty($sessionState),
+            'callback_has_state' => !empty($callbackState),
+            'state_matches' => !empty($sessionState)
+                && !empty($callbackState)
+                && hash_equals($sessionState, $callbackState),
+        ]);
+
         try {
             $googleUser = Socialite::driver('google')->user();
         } catch (\Throwable $e) {
@@ -43,10 +54,10 @@ class GoogleController extends Controller
                 ->with('error', 'Google authentication failed. Please try again.');
         }
 
-        $authorizedEmail = env('ADMIN_GOOGLE_EMAIL');
+        $authorizedEmail = config('services.google.admin_email', env('ADMIN_GOOGLE_EMAIL'));
 
         if (empty($authorizedEmail)) {
-            abort(500, 'ADMIN_GOOGLE_EMAIL is not configured in .env');
+            abort(500, 'ADMIN_GOOGLE_EMAIL is not configured.');
         }
 
         // Strict single-admin check
